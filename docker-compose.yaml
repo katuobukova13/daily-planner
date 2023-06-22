@@ -16,7 +16,7 @@ services:
     container_name: app-nginx
     working_dir: /var/www/site
     ports:
-      - "8001:80"
+      - ${NGINX_PORT}:80
     volumes:
       - ./site:/var/www/site
       - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
@@ -29,14 +29,14 @@ services:
     container_name: app-mysql
     restart: always
     environment:
-      - MYSQL_DATABASE=planner
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_USER=admin
-      - MYSQL_PASSWORD=admin
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
     volumes:
       - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
     ports:
-      - "8982:3306"
+      - ${MYSQL_PORT}:3306
     networks:
       - app-network
 
