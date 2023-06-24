@@ -1,33 +1,37 @@
-<div class="modal fade" id="createTaskModal" tabindex="-1" aria-labelledby="createTaskModalLabel" aria-hidden="true">
+<div class="modal fade"
+     id="createTaskModal" tabindex="-1"
+     data-modal-form-target="modal"
+     aria-labelledby="createTaskModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="createTaskModalLabel">Confirmation required</h1>
+                <h5 class="modal-title">{{ modalTitle }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <p>New task</p>
-                <div class="mb-3">
-                    <label for="description">Description</label>
-                    <input
-                            type="text"
-                            id="description"
-                            class="form-control form-control-solid bg-light"
-                    >
-                </div>
-                <div class="mb-3">
-                    <label for="date">Date</label>
-                    <input
-                            type="date"
-                            id="date"
-                            class="form-control form-control-solid bg-light"
-                            value=""
-                    >
-                </div>
-                <div class="mb-3">
-                    <label class="mr-2">Upload file (jpeg/pdf/doc):</label>
-                    <input type="file" name="file">
-                </div>
+            <div class="modal-body"data-modal-form-target="modalBody">
+                {{ modalContent|default('Loading...') }}
+{#                <div class="mb-3">#}
+{#                    <label for="description">Description</label>#}
+{#                    <input#}
+{#                            type="text"#}
+{#                            id="description"#}
+{#                            class="form-control form-control-solid bg-light"#}
+{#                    >#}
+{#                </div>#}
+{#                <div class="mb-3">#}
+{#                    <label for="date">Date</label>#}
+{#                    <input#}
+{#                            type="date"#}
+{#                            id="date"#}
+{#                            class="form-control form-control-solid bg-light"#}
+{#                            value=""#}
+{#                    >#}
+{#                </div>#}
+{#                <div class="mb-3">#}
+{#                    <label class="mr-2">Upload file (jpeg/pdf/doc):</label>#}
+{#                    <input type="file" name="file">#}
+{#                </div>#}
             </div>
             <form class="modal-footer" action="" method="POST">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
