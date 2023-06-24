@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+    <section class="vh-100">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-6 col-lg-6 col-xl-5">
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+
+
+                    <div class="card bg-primary text-white" style="border-radius: 1rem;">
+                        <div class="card-body p-5 text-center">
+                            <form class="mb-md-4 mt-md-4" method="post">
+
+                                <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                                <p class="text-white-50 mb-5">Please enter your login and password</p>
+
+                                <div class="mb-4 d-flex flex-column align-items-start">
+                                    <label class="form-label" for="inputEmail">Email</label>
+                                    <input type="email" class="form-control form-control-lg" value="{{ last_username }}" name="email" id="inputEmail" autocomplete="email" required autofocus/>
+                                </div>
+
+                                <div class="mb-4 d-flex flex-column align-items-start">
+                                    <label class="form-label text-start" for="inputPassword">Password</label>
+                                    <input type="password" id="inputPassword" name="password" class="form-control form-control-lg" required/>
+                                </div>
+
+                                <input type="hidden" name="_csrf_token"
+                                       value="{{ csrf_token('authenticate') }}"
+                                >
+
+                                <button class="btn btn-light btn-lg px-5 link-primary text-primary" style="--bs-bg-opacity: .5;" type="submit">Login</button>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

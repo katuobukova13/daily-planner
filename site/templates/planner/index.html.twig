@@ -11,10 +11,15 @@
                 <p class="p-1 text-secondary text-center mx-auto">Create task with dates and files</p>
             </div>
         </div>
-        <!-- Create todo section -->
         <div class="row m-1 p-3">
+            {% if app.user %}
+            <!-- Create todo section -->
             <div class="d-flex align-items-center justify-content-center">
-                <button type="button" class="btn btn-primary">Add task</button>
+                <div {{ stimulus_controller('modal-form') }}>
+                <button class="btn btn-primary"
+                        data-action="modal-form#openModal">
+                    Add task</button>
+            </div>
             </div>
         </div>
         <div class="p-2 mx-4 border-black-25 border-bottom"></div>
@@ -23,6 +28,11 @@
             <div class="col mx-auto mx-4">
                 <div class="text-secondary text-center mx-auto display-inline-block m-1 p-3">Now it's empty</div>
             </div>
+            {% else %}
+                <div class="d-flex justify-content-center">
+                    <a class="btn btn-primary" href="{{ path('app_login') }}">Login</a>
+                </div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

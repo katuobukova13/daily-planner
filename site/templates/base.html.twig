@@ -14,6 +14,22 @@
         {% endblock %}
     </head>
     <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light px-1 d-flex justify-content-between px-4 shadow" style="height: 60px;">
+        <a class="navbar-brand" href="{{ path('home') }}">
+            <p class="pl-2 d-inline font-weight-bold text-primary">Daily-planner</p>
+        </a>
+
+        {% if app.user %}
+            <div class="d-flex">
+                <a class="btn btn-primary" href="{{ path('app_logout') }}">Logout</a>
+            </div>
+        {% else %}
+            <div class="d-flex">
+                <a class="btn btn-primary" href="{{ path('app_login') }}">Login</a>
+            </div>
+        {% endif %}
+    </nav>
+
     {% block body %}{% endblock %}
     </body>
 </html>

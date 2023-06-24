@@ -10,7 +10,7 @@ class PlannerController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index()
+    public function index(): \Symfony\Component\HttpFoundation\Response
     {
         return $this->render('planner/index.html.twig');
     }
