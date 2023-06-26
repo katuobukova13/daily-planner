@@ -151,7 +151,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->task;
     }
 
-    public function addTaskId(Task $taskId): self
+    public function addTask(Task $taskId): self
     {
         if (!$this->task->contains($taskId)) {
             $this->task[] = $taskId;
@@ -161,7 +161,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function removeTaskId(Task $taskId): self
+    public function removeTask(Task $taskId): self
     {
         if ($this->task->removeElement($taskId)) {
             // set the owning side to null (unless already changed)
