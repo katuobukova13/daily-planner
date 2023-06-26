@@ -31,7 +31,9 @@
                         <div class="row px-3 align-items-center todo-item rounded">
                             <div class="col px-1 m-1 d-flex align-items-center">
                                 <div class="row">
+                                     <p class="text text-black pl-2 font-weight-bold my-2 pr-2">
                                     {{ task.description }}
+                                     </p>
                                 </div>
                             </div>
                             <div class="col-auto m-1 p-0 px-3">
@@ -68,42 +70,3 @@
     {% endif %}
     </div>
 {% endblock %}
-
-
-{# {% block title %}Task index{% endblock %} #}
-
-{# {% block body %} #}
-{#    <h1>Task index</h1> #}
-
-{#    <table class="table"> #}
-{#        <thead> #}
-{#        <tr> #}
-{#            <th>Id</th> #}
-{#            <th>Date</th> #}
-{#            <th>File</th> #}
-{#            <th>Description</th> #}
-{#            <th>actions</th> #}
-{#        </tr> #}
-{#        </thead> #}
-{#        <tbody> #}
-{#        {% for task in tasks %} #}
-{#            <tr> #}
-{#                <td>{{ task.id }}</td> #}
-{#                <td>{{ task.date ? task.date|date('Y-m-d') : '' }}</td> #}
-{#                <td>{{ task.file }}</td> #}
-{#                <td>{{ task.description }}</td> #}
-{#                <td> #}
-{#                    <a href="{{ path('app_task_show', {'id': task.id}) }}">show</a> #}
-{#                    <a href="{{ path('app_task_edit', {'id': task.id}) }}">edit</a> #}
-{#                </td> #}
-{#            </tr> #}
-{#        {% else %} #}
-{#            <tr> #}
-{#                <td colspan="5">no records found</td> #}
-{#            </tr> #}
-{#        {% endfor %} #}
-{#        </tbody> #}
-{#    </table> #}
-
-{#    <a href="{{ path('app_task_new') }}">Create new</a> #}
-{# {% endblock %} #}
