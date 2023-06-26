@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\TaskRepository;
+use App\Service\UploaderHelper;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -77,6 +78,11 @@ class Task
         $this->file = $file;
 
         return $this;
+    }
+
+    public function getFilePath()
+    {
+        return 'uploads/'.$this->getFile();
     }
 
     public function getDescription(): ?string

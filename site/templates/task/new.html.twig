@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Task{% endblock %}
+
+{% block body %}
+<div class="container m-5 p-2 rounded mx-auto bg-light shadow">
+    <div class="row m-1 p-4">
+        <div class="col">
+            <div class="p-1 h1 text-primary text-center mx-auto display-inline-block">
+    Add a new task
+            </div>
+
+
+    {{ include('task/_form.html.twig') }}
+            <div/>
+
+    <div class="mb-3 text-center">
+        <a href="{{ path('home') }}">back to list</a>
+    </div>
+</div>
+{% endblock %}
