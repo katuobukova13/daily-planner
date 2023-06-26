@@ -40,13 +40,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $password;
 
     /**
-     * @ORM\OneToMany(targetEntity=Task::class, mappedBy="user_id", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Task::class, mappedBy="user", orphanRemoval=true)
      */
-    private $task_id;
+    private $task;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $enabled;
 
     public function __construct()
     {
-        $this->task_id = new ArrayCollection();
+        $this->task = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -73,7 +78,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUserIdentifier(): string
     {
-        return (string) $this->email;
+        return (string)$this->email;
     }
 
     /**
@@ -81,7 +86,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->email;
+        return (string)$this->email;
     }
 
     /**
@@ -141,16 +146,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return Collection<int, Task>
      */
-    public function getTaskId(): Collection
+    public function getTask(): Collection
     {
-        return $this->task_id;
+        return $this->task;
     }
 
     public function addTaskId(Task $taskId): self
     {
-        if (!$this->task_id->contains($taskId)) {
-            $this->task_id[] = $taskId;
-            $taskId->setUserId($this);
+        if (!$this->task->contains($taskId)) {
+            $this->task[] = $taskId;
+            $taskId->setUser($this);
         }
 
         return $this;
@@ -158,12 +163,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function removeTaskId(Task $taskId): self
     {
-        if ($this->task_id->removeElement($taskId)) {
+        if ($this->task->removeElement($taskId)) {
             // set the owning side to null (unless already changed)
-            if ($taskId->getUserId() === $this) {
-                $taskId->setUserId(null);
+            if ($taskId->getUser() === $this) {
+                $taskId->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isEnabled(): ?bool
+    {
+        return $this->enabled;
+    }
+
+    public function setEnabled(bool $enabled): self
+    {
+        $this->enabled = $enabled;
 
         return $this;
     }

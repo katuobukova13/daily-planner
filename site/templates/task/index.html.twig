@@ -2,103 +2,108 @@
 
 {% block body %}
     <div class="container m-5 p-2 rounded mx-auto bg-light shadow">
-        <!-- App title section -->
-        <div class="row m-1 p-4">
-            <div class="col">
-                <div class="p-1 h1 text-primary text-center mx-auto display-inline-block">
-                    Daily-planner
-                </div>
-                <p class="p-1 text-secondary text-center mx-auto">Create task with dates and files</p>
+    <!-- App title section -->
+    <div class="row m-1 p-4">
+        <div class="col">
+            <div class="p-1 h1 text-primary text-center mx-auto display-inline-block">
+                Daily-planner
             </div>
+            <p class="p-1 text-secondary text-center mx-auto">Create task with dates and files</p>
         </div>
-        <div class="row m-1 p-3">
-            {% if app.user %}
-            <!-- Create todo section -->
-            <div class="d-flex align-items-center justify-content-center">
-                <a href="{{ path('app_task_new') }}"
-                    class="btn btn-primary"
-                    >
-                        Add task</a>
-                </div>
-            </div>
+    </div>
+    <div class="row m-1 p-3">
+    {% if app.user %}
+        <!-- Create todo section -->
+        <div class="d-flex align-items-center justify-content-center">
+            <a href="{{ path('app_task_new') }}"
+               class="btn btn-primary"
+            >
+                Add task</a>
+        </div>
+        </div>
         </div>
         <div class="p-2 mx-4 border-black-25 border-bottom"></div>
         <!-- Todo list section -->
         <div class="row mx-1 px-5 py-3 w-80">
-            {% if app.user %}
             <div class="col mx-auto mx-4">
                 {% if tasks != [] %}
-                {% for task in tasks %}
-                    <div class="row px-3 align-items-center todo-item rounded">
-                        <div class="col px-1 m-1 d-flex align-items-center">
-                            <input type="checkbox" id="defaultCheck1" class="form-control edit-todo-input rounded px-3 form-check-input"/>
-                            <label class="form-check-label border-0 edit-todo-input bg-transparent px-3" for="defaultCheck1">
-                                {{ task.description }}
-                            </label>
-                        </div>
-                        <div class="col-auto m-1 p-0 px-3">
-                            <div class="row">
-                                <a href='{{ task.getFilePath() }}'>{{ task.file }}</a>
+                    {% for task in tasks %}
+                        <div class="row px-3 align-items-center todo-item rounded">
+                            <div class="col px-1 m-1 d-flex align-items-center">
+                                <div class="row">
+                                    {{ task.description }}
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-auto m-1 p-0 px-3">
-                            <div class="row">
-                                <div class="col-auto d-flex align-items-center rounded bg-white border border-success">
-                                    <h6 class="text my-2 pr-2">{{ task.date.format('d.m.Y') }}</h6>
+                            <div class="col-auto m-1 p-0 px-3">
+                                <div class="row">
+                                    <a href='{{ task.getFilePath() }}'>See file</a>
+                                </div>
+                            </div>
+                            <div class="col-auto m-1 p-0 px-3">
+                                <div class="row">
+                                    <div class="col-auto d-flex align-items-center rounded bg-white border border-primary">
+                                        <h6 class="text my-2 pr-2">{{ task.date.format('d.m.Y') }}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-auto m-1 p-0 px-3">
+                                <div class="row">
+                                    <div class="col-auto d-flex align-items-center">
+                                        <a class="btn btn-success"
+                                           href="{{ path('app_task_delete', {'id': task.id}) }}">Done</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                {% endfor %}
+                    {% endfor %}
                 {% else %}
                     <div class="text-secondary text-center mx-auto display-inline-block m-1 p-3">Now it's empty</div>
                 {% endif %}
             </div>
-            {% else %}
-                <div class="d-flex justify-content-center">
-                    <a class="btn btn-primary" href="{{ path('app_login') }}">Login</a>
-                </div>
-            {% endif %}
-            {% endif %}
         </div>
+    {% else %}
+        <div class="d-flex justify-content-center">
+            <a class="btn btn-primary" href="{{ path('app_login') }}">Login</a>
+        </div>
+    {% endif %}
     </div>
 {% endblock %}
 
 
-{#{% block title %}Task index{% endblock %}#}
+{# {% block title %}Task index{% endblock %} #}
 
-{#{% block body %}#}
-{#    <h1>Task index</h1>#}
+{# {% block body %} #}
+{#    <h1>Task index</h1> #}
 
-{#    <table class="table">#}
-{#        <thead>#}
-{#        <tr>#}
-{#            <th>Id</th>#}
-{#            <th>Date</th>#}
-{#            <th>File</th>#}
-{#            <th>Description</th>#}
-{#            <th>actions</th>#}
-{#        </tr>#}
-{#        </thead>#}
-{#        <tbody>#}
-{#        {% for task in tasks %}#}
-{#            <tr>#}
-{#                <td>{{ task.id }}</td>#}
-{#                <td>{{ task.date ? task.date|date('Y-m-d') : '' }}</td>#}
-{#                <td>{{ task.file }}</td>#}
-{#                <td>{{ task.description }}</td>#}
-{#                <td>#}
-{#                    <a href="{{ path('app_task_show', {'id': task.id}) }}">show</a>#}
-{#                    <a href="{{ path('app_task_edit', {'id': task.id}) }}">edit</a>#}
-{#                </td>#}
-{#            </tr>#}
-{#        {% else %}#}
-{#            <tr>#}
-{#                <td colspan="5">no records found</td>#}
-{#            </tr>#}
-{#        {% endfor %}#}
-{#        </tbody>#}
-{#    </table>#}
+{#    <table class="table"> #}
+{#        <thead> #}
+{#        <tr> #}
+{#            <th>Id</th> #}
+{#            <th>Date</th> #}
+{#            <th>File</th> #}
+{#            <th>Description</th> #}
+{#            <th>actions</th> #}
+{#        </tr> #}
+{#        </thead> #}
+{#        <tbody> #}
+{#        {% for task in tasks %} #}
+{#            <tr> #}
+{#                <td>{{ task.id }}</td> #}
+{#                <td>{{ task.date ? task.date|date('Y-m-d') : '' }}</td> #}
+{#                <td>{{ task.file }}</td> #}
+{#                <td>{{ task.description }}</td> #}
+{#                <td> #}
+{#                    <a href="{{ path('app_task_show', {'id': task.id}) }}">show</a> #}
+{#                    <a href="{{ path('app_task_edit', {'id': task.id}) }}">edit</a> #}
+{#                </td> #}
+{#            </tr> #}
+{#        {% else %} #}
+{#            <tr> #}
+{#                <td colspan="5">no records found</td> #}
+{#            </tr> #}
+{#        {% endfor %} #}
+{#        </tbody> #}
+{#    </table> #}
 
-{#    <a href="{{ path('app_task_new') }}">Create new</a>#}
-{#{% endblock %}#}
+{#    <a href="{{ path('app_task_new') }}">Create new</a> #}
+{# {% endblock %} #}

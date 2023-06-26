@@ -3,32 +3,40 @@
 {% block title %}Task{% endblock %}
 
 {% block body %}
-    <h1>Task</h1>
+    <div class="container m-5 p-2 rounded mx-auto bg-light shadow">
+        <div class="row m-1 p-4">
+            <div class="col">
+                <div class="p-1 h1 text-primary text-center mx-auto display-inline-block">
+                    Task
+                </div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ task.id }}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{{ task.date ? task.date|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>File</th>
-                <td>{{ task.file }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ task.description }}</td>
-            </tr>
-        </tbody>
-    </table>
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ task.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Date</th>
+                        <td>{{ task.date ? task.date|date('Y-m-d') : '' }}</td>
+                    </tr>
+                    <tr>
+                        <th>File</th>
+                        <td>{{ task.file }}</td>
+                    </tr>
+                    <tr>
+                        <th>Description</th>
+                        <td>{{ task.description }}</td>
+                    </tr>
+                    </tbody>
+                </table>
 
-    <a href="{{ path('home') }}">back to list</a>
+                <div class="mb-3 text-center">
+                    <a href="{{ path('home') }}">back to list</a>
+                </div>
 
-    <a href="{{ path('app_task_edit', {'id': task.id}) }}">edit</a>
-
-    {{ include('task/_delete_form.html.twig') }}
+                {{ include('task/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
 {% endblock %}
