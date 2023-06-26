@@ -1,11 +1,12 @@
 Set up:
 
-make env
-make up
-make init
-make migrate
+1. make env
+2. make up
+3. make init
+4. make migrate
 
 Optional:
+
 make test
 
 Go to "http://localhost:8001/" 
