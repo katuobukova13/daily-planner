@@ -1,5 +1,6 @@
 Set up:
 
+make env
 make up
 make init
 make migrate

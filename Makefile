@@ -1,11 +1,13 @@
+env:
+	cp .env.example .env && cd ./site && cp .env.example .env
+
 up:
 	docker-compose up -d
 
 init:
-	cp .env.example .env
-	cd ./site && cp .env.example .env
 	docker exec -it app-php composer install
 	cd ./site && npm install
+	cd ./site && npm run build
 
 migrate:
 	docker exec -it app-php php bin/console doctrine:migrations:migrate
