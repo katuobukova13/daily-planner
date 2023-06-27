@@ -5,6 +5,7 @@ up:
 	docker-compose up -d
 
 init:
+	cd ./site/assets && mkdir controllers
 	docker exec -it app-php composer install
 	cd ./site && npm install
 	cd ./site && npm run build
